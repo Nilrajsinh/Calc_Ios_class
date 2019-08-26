@@ -13,24 +13,11 @@ class ViewController: UIViewController ,UITextFieldDelegate {
     @IBOutlet weak var TxtA: UITextField!
     
     @IBOutlet weak var txtB: UITextField!
-    
-    
+
     @IBAction func SagmentChange(_ sender: UISegmentedControl) {
-        
-        if (TxtA,txtB) != nil{
-            let alert = UIAlertController(title: "Missing value:", message: "Add the value of A and B", preferredStyle:.alert)
-            
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                
-            }))
-            
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        else{
-            
-            
+
+        if TxtA.text != "" || txtB.text != ""  {
+           
         let a = ((Int) (TxtA.text!))!
         let b = ((Int) (txtB.text!))!
         
@@ -62,16 +49,28 @@ class ViewController: UIViewController ,UITextFieldDelegate {
         }))
         
         self.present(alertView, animated: true, completion: nil)
+       
+       }
+        else {
+            let alertView = UIAlertController(title: "alert:", message: "Add missing value", preferredStyle:.alert)
+            
+            
+            alertView.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+                
+            }))
+            
+            self.present(alertView, animated: true, completion: nil)
+            
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
        
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-     textField.resignFirstResponder()
+       textField.resignFirstResponder()
         return true
     }
 }
